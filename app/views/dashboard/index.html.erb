@@ -1,0 +1,59 @@
+<div class="max-w-7xl mx-auto px-6 py-8 space-y-8">
+
+  <h1 class="text-2xl font-semibold text-gray-900">HRM Dashboard</h1>
+
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+    <div class="rounded-lg border bg-white p-6">
+      <dt class="text-sm text-gray-500">Global Min BPM</dt>
+      <dd class="mt-2 text-3xl font-semibold"><%= @global_min %></dd>
+    </div>
+
+    <div class="rounded-lg border bg-white p-6">
+      <dt class="text-sm text-gray-500">Global Max BPM</dt>
+      <dd class="mt-2 text-3xl font-semibold"><%= @global_max %></dd>
+    </div>
+
+    <div class="rounded-lg border bg-white p-6">
+      <dt class="text-sm text-gray-500">Global Avg BPM</dt>
+      <dd class="mt-2 text-3xl font-semibold">
+        <%= number_with_precision(@global_avg, precision: 2) %>
+      </dd>
+    </div>
+  </div>
+
+  <div class="rounded-lg border bg-white p-6">
+    <h2 class="text-lg font-medium mb-4">Time in Zones (%)</h2>
+    <ul class="space-y-2 text-sm">
+      <% @zone_percentages.each do |zone, pct| %>
+        <li class="flex justify-between">
+          <span><%= zone.to_s.upcase %></span>
+          <span><%= number_to_percentage(pct, precision: 1) %></span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="rounded-lg border bg-white">
+    <div class="px-6 py-4 border-b flex justify-between items-center">
+      <h2 class="text-lg font-medium">Recent Sessions</h2>
+      <%= link_to "View all", hrm_sessions_path, class: "text-sm text-indigo-600 hover:underline" %>
+    </div>
+
+    <ul class="divide-y">
+      <% @recent_sessions.each do |s| %>
+        <li class="px-6 py-4 flex justify-between text-sm">
+          <div>
+            <%= link_to "Session ##{s.external_id}", hrm_session_path(s), class: "font-medium text-indigo-600 hover:underline" %>
+            <div class="text-gray-500">
+              <%= s.user.username %> · <%= l(s.imported_created_at, format: :short) %>
+            </div>
+          </div>
+          <div class="font-medium">
+            Avg <%= number_with_precision(s.avg_bpm, precision: 2) %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>
