@@ -1,0 +1,3 @@
+class HrmSession < ApplicationRecord
+  belongs_to :user
+end
