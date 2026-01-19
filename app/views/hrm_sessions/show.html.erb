@@ -31,8 +31,11 @@
 
   <div class="rounded-lg border border-gray-200 bg-white p-6">
     <h2 class="text-lg font-medium text-gray-900">Heart Rate Over Time</h2>
-    <div class="mt-4">
-      <%= line_chart @session.chart_points, height: "320px" %>
+    <div class="mt-4 h-80">
+      <canvas
+        class="h-full w-full"
+        data-hrm-chart="session"
+        data-hrm-url="<%= chart_hrm_session_path(@session, format: :json) %>"></canvas>
     </div>
     <div class="text-xs text-gray-500 mt-2">
       Chart is bucketed/downsampled for performance.

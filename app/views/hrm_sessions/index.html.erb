@@ -17,6 +17,7 @@
             <th class="px-4 py-3">Created</th>
             <th class="px-4 py-3">Min / Max / Avg</th>
             <th class="px-4 py-3">Zones (secs)</th>
+            <th class="px-4 py-3">Trend</th>
           </tr>
         </thead>
 
@@ -37,6 +38,14 @@
                 Z2 <%= s.zone2_secs %> ·
                 Z3 <%= s.zone3_secs %> ·
                 Z4 <%= s.zone4_secs %>
+              </td>
+              <td class="px-4 py-3">
+                <div class="h-12 w-32">
+                  <canvas
+                    class="h-full w-full"
+                    data-hrm-chart="sparkline"
+                    data-hrm-url="<%= chart_hrm_session_path(s, format: :json) %>"></canvas>
+                </div>
               </td>
             </tr>
           <% end %>
