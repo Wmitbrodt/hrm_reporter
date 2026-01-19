@@ -1,59 +1,60 @@
-<div class="max-w-7xl mx-auto px-6 py-8 space-y-8">
-
-  <h1 class="text-2xl font-semibold text-gray-900">HRM Dashboard</h1>
+<div class="space-y-8">
+  <div class="border-b border-gray-200 pb-4">
+    <h1 class="text-2xl font-semibold text-gray-900">HRM Dashboard</h1>
+    <p class="mt-1 text-sm text-gray-500">Global summary across all sessions</p>
+  </div>
 
   <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
-    <div class="rounded-lg border bg-white p-6">
+    <div class="rounded-lg border border-gray-200 bg-white p-6">
       <dt class="text-sm text-gray-500">Global Min BPM</dt>
-      <dd class="mt-2 text-3xl font-semibold"><%= @global_min %></dd>
+      <dd class="mt-2 text-3xl font-semibold text-gray-900"><%= @global_min %></dd>
     </div>
 
-    <div class="rounded-lg border bg-white p-6">
+    <div class="rounded-lg border border-gray-200 bg-white p-6">
       <dt class="text-sm text-gray-500">Global Max BPM</dt>
-      <dd class="mt-2 text-3xl font-semibold"><%= @global_max %></dd>
+      <dd class="mt-2 text-3xl font-semibold text-gray-900"><%= @global_max %></dd>
     </div>
 
-    <div class="rounded-lg border bg-white p-6">
+    <div class="rounded-lg border border-gray-200 bg-white p-6">
       <dt class="text-sm text-gray-500">Global Avg BPM</dt>
-      <dd class="mt-2 text-3xl font-semibold">
+      <dd class="mt-2 text-3xl font-semibold text-gray-900">
         <%= number_with_precision(@global_avg, precision: 2) %>
       </dd>
     </div>
   </div>
 
-  <div class="rounded-lg border bg-white p-6">
-    <h2 class="text-lg font-medium mb-4">Time in Zones (%)</h2>
-    <ul class="space-y-2 text-sm">
+  <div class="rounded-lg border border-gray-200 bg-white p-6">
+    <h2 class="text-lg font-medium text-gray-900">Time in Zones</h2>
+    <dl class="mt-4 divide-y divide-gray-100 text-sm">
       <% @zone_percentages.each do |zone, pct| %>
-        <li class="flex justify-between">
-          <span><%= zone.to_s.upcase %></span>
-          <span><%= number_to_percentage(pct, precision: 1) %></span>
-        </li>
+        <div class="flex items-center justify-between py-2">
+          <dt class="text-gray-500"><%= zone.to_s.upcase %></dt>
+          <dd class="font-medium text-gray-900"><%= number_to_percentage(pct, precision: 1) %></dd>
+        </div>
       <% end %>
-    </ul>
+    </dl>
   </div>
 
-  <div class="rounded-lg border bg-white">
-    <div class="px-6 py-4 border-b flex justify-between items-center">
-      <h2 class="text-lg font-medium">Recent Sessions</h2>
+  <div class="rounded-lg border border-gray-200 bg-white">
+    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+      <h2 class="text-lg font-medium text-gray-900">Recent Sessions</h2>
       <%= link_to "View all", hrm_sessions_path, class: "text-sm text-indigo-600 hover:underline" %>
     </div>
 
-    <ul class="divide-y">
+    <ul class="divide-y divide-gray-100">
       <% @recent_sessions.each do |s| %>
-        <li class="px-6 py-4 flex justify-between text-sm">
+        <li class="px-6 py-4 flex items-center justify-between text-sm">
           <div>
             <%= link_to "Session ##{s.external_id}", hrm_session_path(s), class: "font-medium text-indigo-600 hover:underline" %>
             <div class="text-gray-500">
               <%= s.user.username %> · <%= l(s.imported_created_at, format: :short) %>
             </div>
           </div>
-          <div class="font-medium">
+          <div class="font-medium text-gray-900">
             Avg <%= number_with_precision(s.avg_bpm, precision: 2) %>
           </div>
         </li>
       <% end %>
     </ul>
   </div>
-
 </div>
