@@ -13,6 +13,14 @@ The emphasis of my approach was:
 
 ---
 
+## UI/UX
+<img width="3848" height="3686" alt="screencapture-localhost-3000-2026-01-19-18_30_53" src="https://github.com/user-attachments/assets/a2e5901d-8059-4f5a-89aa-71bd851a1e86" />
+
+<img width="3848" height="7988" alt="screencapture-localhost-3000-hrm-sessions-2026-01-19-18_31_04" src="https://github.com/user-attachments/assets/86d7ad98-4a2d-4ab7-b6e2-184e3d2e2737" />
+
+<img width="3848" height="1868" alt="screencapture-localhost-3000-hrm-sessions-51576-2026-01-19-18_31_15" src="https://github.com/user-attachments/assets/74ab30ab-9653-4c4e-8ab8-f5946e09dcf4" />
+
+
 ## Assignment Overview (How This README Is Structured)
 
 Below, I walk through the original assignment **line by line** and explain how each requirement was addressed, including design decisions and tradeoffs.
