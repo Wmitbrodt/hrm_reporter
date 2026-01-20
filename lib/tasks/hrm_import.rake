@@ -44,7 +44,7 @@ def import_users(path)
       zone4_min: r[11].to_i, zone4_max: r[12].to_i
     }
 
-    if rows.size >= 5_000
+    if rows.size >= 500
       User.insert_all(rows, unique_by: :index_users_on_external_id)
       rows.clear
     end
@@ -75,7 +75,7 @@ def import_sessions(path)
       chart_points: []
     }
 
-    if rows.size >= 5_000
+    if rows.size >= 500
       HrmSession.insert_all(rows, unique_by: :index_hrm_sessions_on_external_id)
       rows.clear
     end
