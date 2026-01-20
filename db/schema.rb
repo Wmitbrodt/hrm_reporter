@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_01_19_024754) do
+ActiveRecord::Schema[7.2].define(version: 2026_01_19_014929) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_01_19_024754) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["external_id"], name: "index_hrm_sessions_on_external_id", unique: true
+    t.index ["imported_created_at"], name: "index_hrm_sessions_on_imported_created_at"
     t.index ["user_id"], name: "index_hrm_sessions_on_user_id"
   end
 
